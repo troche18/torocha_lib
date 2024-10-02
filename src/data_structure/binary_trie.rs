@@ -111,3 +111,16 @@ impl BinaryTrie {
         self.get_kth_min(total - k + 1)
     }
 }
+
+#[test]
+fn test_binary_trie() {
+    let v = vec![0, 3, 4, 5, 6, 9];
+    let mut binary_trie = BinaryTrie::new(30);
+    for i in v {
+        binary_trie.insert(i);
+    }
+    assert_eq!(4, binary_trie.get_kth_min(3));
+    assert_eq!(6, binary_trie.get_kth_max(2));
+    // assert_eq!(0, binary_trie.get_min());
+    // assert_eq!(9, binary_trie.get_max());
+}
