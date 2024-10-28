@@ -9,6 +9,10 @@ name = "cumulative_sum_2d"
 path = "src/data_structure/cumulative_sum_2d.rs"
 
 [[bin]]
+name = "cumulative_sum"
+path = "src/data_structure/cumulative_sum.rs"
+
+[[bin]]
 name = "binary_trie"
 path = "src/data_structure/binary_trie.rs"
 
