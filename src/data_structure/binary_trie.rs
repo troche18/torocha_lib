@@ -18,6 +18,7 @@ struct BinaryTrie {
     xor_mask: usize,
 }
 
+#[allow(dead_code)]
 impl BinaryTrie {
     fn new(bit_depth: usize) -> Self {
         Self {
