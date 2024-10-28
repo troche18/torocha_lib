@@ -154,6 +154,9 @@ impl BinaryTrie {
 
     fn get_kth_max(&mut self, k: usize) -> Option<usize> {
         let total = self.root.count;
+        if total < k {
+            return None;
+        }
         self.get_kth_min(total - k + 1)
     }
 }
