@@ -71,6 +71,7 @@ impl BinaryTrie {
                 node.count -= 1;
             } else {
                 node.children[bit] = None;
+                break;
             }
         }
     }
