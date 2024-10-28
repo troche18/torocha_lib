@@ -5,7 +5,7 @@ impl<T: std::ops::Add<Output=T> + std::ops::Sub<Output=T> + From<u8> + Copy> Cum
     pub fn from(v: Vec<T>) -> Self {
         let mut list = vec![0.into(); v.len() + 1];
         for i in 1..=v.len() {
-            list[i] = list[i] + v[i - 1] + list[i - 1];
+            list[i] = v[i - 1] + list[i - 1];
         }
         Self { list }
     }
