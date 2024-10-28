@@ -106,25 +106,26 @@ impl BinaryTrie {
 
     fn lower_bound(&mut self, x: usize) -> Option<usize> {
         let less = self.less_x(x);
-        let total = self.root.count;
-        if less + 1 > total {
+        let total = self.size() - 1;
+        if less > total {
             None
         } else {
-            self.get_kth_min(less + 1)
+            self.get_kth_min(less)
         }
     }
 
     fn get_min(&mut self) -> Option<usize> {
-        self.get_kth_min(1)
+        self.get_kth_min(0)
     }
 
     fn get_max(&mut self) -> Option<usize> {
-        self.get_kth_max(1)
+        self.get_kth_max(0)
     }
 
     fn get_kth_min(&mut self, mut k: usize) -> Option<usize> {
+        k += 1;
         let mut node = &self.root;
-        let total = node.count;
+        let total = node.count - 1;
         if total < k {
             return None;
         }
@@ -152,12 +153,13 @@ impl BinaryTrie {
         Some(ret)
     }
 
-    fn get_kth_max(&mut self, k: usize) -> Option<usize> {
-        let total = self.root.count;
+    fn get_kth_max(&mut self, mut k: usize) -> Option<usize> {
+        k += 1;
+        let total = self.size() - 1;
         if total < k {
             return None;
         }
-        self.get_kth_min(total - k + 1)
+        self.get_kth_min(total - k)
     }
 
     fn size(&self) -> usize {
