@@ -159,6 +159,10 @@ impl BinaryTrie {
         }
         self.get_kth_min(total - k + 1)
     }
+
+    fn size(&self) -> usize {
+        self.root.count
+    }
 }
 
 #[test]
