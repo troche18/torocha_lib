@@ -126,7 +126,7 @@ impl BinaryTrie {
     fn get_kth_min(&mut self, mut k: usize) -> Option<usize> {
         k += 1;
         let mut node = &self.root;
-        let total = node.count - 1;
+        let total = node.count;
         if total < k {
             return None;
         }
@@ -156,7 +156,7 @@ impl BinaryTrie {
 
     fn get_kth_max(&mut self, mut k: usize) -> Option<usize> {
         k += 1;
-        let total = self.size() - 1;
+        let total = self.size();
         if total < k {
             return None;
         }
@@ -178,19 +178,21 @@ fn binary_trie() {
     }
 
     // get_kth
-    assert_eq!(4, binary_trie.get_kth_min(3).unwrap());
-    assert_eq!(6, binary_trie.get_kth_max(2).unwrap());
+    assert_eq!(4, binary_trie.get_kth_min(2).unwrap());
+    assert_eq!(6, binary_trie.get_kth_max(1).unwrap());
 
     // find
     assert_eq!(1, binary_trie.find(0));
     assert_eq!(0, binary_trie.find(1));
     assert_eq!(2, binary_trie.find(5));
 
-    // remove
+    // discard
     binary_trie.discard(6);
     assert_eq!(0, binary_trie.find(6));
+    assert_eq!(6, binary_trie.size());
     binary_trie.discard(5);
     assert_eq!(1, binary_trie.find(5));
+    assert_eq!(5, binary_trie.size());
     binary_trie.insert(6);
     binary_trie.insert(5);
 
@@ -211,11 +213,13 @@ fn binary_trie() {
     // xor_mask
     binary_trie.xor_mask_change(3);
     // 0 3 5 6 6 7 10
-    assert_eq!(6, binary_trie.get_kth_min(4).unwrap());
+    assert_eq!(6, binary_trie.get_kth_min(3).unwrap());
     assert_eq!(1, binary_trie.find(7));
     binary_trie.discard(7);
     assert_eq!(0, binary_trie.find(7));
+    assert_eq!(6, binary_trie.size());
     binary_trie.insert(7);
+    assert_eq!(7, binary_trie.size());
     assert_eq!(1, binary_trie.find(7));
     assert_eq!(5, binary_trie.less_x(7));
     assert_eq!(10, binary_trie.get_max().unwrap());
